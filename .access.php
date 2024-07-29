@@ -1,7 +1,13 @@
 <?
+$PERM["lichnyy-kabinet-prodavtsa"]["2"]="D";
+$PERM["lichnyy-kabinet-prodavtsa"]["9"]="D";
+$PERM["lichnyy-kabinet-prodavtsa"]["8"]="X";
+$PERM["lichnyy-kabinet-prodavtsa"]["*"]="D";
+$PERM["lichnyy-kabinet-pokupatelya"]["2"]="D";
+$PERM["lichnyy-kabinet-pokupatelya"]["9"]="X";
+$PERM["lichnyy-kabinet-pokupatelya"]["8"]="D";
 $PERM["search"]["5"]="W";
 $PERM["products"]["5"]="W";
-$PERM["services"]["5"]="W";
 $PERM["news"]["5"]="W";
 $PERM["contacts"]["5"]="W";
 $PERM["company"]["5"]="W";
