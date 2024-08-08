@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("Главная страница");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
-		"DETAIL_URL" => "#SITE_DIR#/news/#ELEMENT_CODE#",
+		"DETAIL_URL" => "#SITE_DIR#/o-servise/novosti/#ELEMENT_CODE#/",
 		"DISPLAY_BOTTOM_PAGER" => "N",
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
@@ -84,12 +84,14 @@ $APPLICATION->SetTitle("Главная страница");
 		"SORT_ORDER2" => "ASC"
 	)
 );?><?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
+	"bitrix:main.include", 
+	".default", 
+	array(
 		"AREA_FILE_SHOW" => "file",
 		"AREA_FILE_SUFFIX" => "inc",
 		"EDIT_TEMPLATE" => "",
-		"PATH" => ".info_inc.html"
-	)
+		"PATH" => "info_inc.html",
+		"COMPONENT_TEMPLATE" => ".default"
+	),
+	false
 );?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

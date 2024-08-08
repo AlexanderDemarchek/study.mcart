@@ -1,4 +1,15 @@
 <?
+$PERM["/"]["2"]="D";
+$PERM["/"]["14"]="D";
+$PERM["/"]["9"]="D";
+$PERM["/"]["12"]="D";
+$PERM["/"]["*"]="D";
+$PERM["bitrix"]["2"]="D";
+$PERM["bitrix"]["14"]="D";
+$PERM["bitrix"]["9"]="D";
+$PERM["bitrix"]["*"]="R";
+$PERM["info_inc.html"]["14"]="W";
+$PERM[".info_inc.html"]["14"]="W";
 $PERM["index.php"]["14"]="X";
 $PERM["obyavleniya"]["14"]="W";
 $PERM["o-servise"]["14"]="W";
@@ -10,10 +21,6 @@ $PERM["lichnyy-kabinet-prodavtsa"]["*"]="D";
 $PERM["lichnyy-kabinet-pokupatelya"]["14"]="W";
 $PERM["lichnyy-kabinet-pokupatelya"]["2"]="D";
 $PERM["lichnyy-kabinet-pokupatelya"]["9"]="R";
-$PERM["bitrix"]["2"]="D";
-$PERM["bitrix"]["9"]="D";
-$PERM["bitrix"]["*"]="R";
-$PERM["/"]["*"]="R";
 $PERM[".git"]["11"]="R";
 $PERM["admin"]["10"]="X";
 $PERM["search"]["5"]="W";
