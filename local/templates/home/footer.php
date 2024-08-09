@@ -87,7 +87,6 @@
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/jquery.countdown.min.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/jquery.magnific-popup.min.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/bootstrap-datepicker.min.js");
-    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/bootstrap-datepicker.min.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/aos.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/main.js");
   ?>

@@ -343,7 +343,7 @@ a:hover {
   position: absolute;
   bottom: 0;
 }
-/* 
+
 .site-loader {
   position: fixed;
   left: 0px;
@@ -353,7 +353,7 @@ a:hover {
   z-index: 9999;
   background: url(../images/loader.gif) center no-repeat #fff;
 }
-   */
+ 
 
 
 .site-navbar-top .site-logo {
