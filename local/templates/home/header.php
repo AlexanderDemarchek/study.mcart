@@ -8,7 +8,7 @@ IncludeTemplateLangFile(__FILE__);
 <title><?$APPLICATION->ShowTitle()?></title>
 <?
  use Bitrix\Main\Page\Asset;
-// // Для подключения css
+
 Asset::getInstance()->addCss("https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500");
 Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/fonts/icomoon/style.css");
 Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/bootstrap.min.css");
@@ -25,30 +25,9 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/aos.css");
 Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
 
 ?>
-
-<!-- <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
-  <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
-
-  <!-- <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/magnific-popup.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/jquery-ui.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/mediaelementplayer.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/animate.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/fonts/flaticon/font/flaticon.css">
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/fl-bigmug-line.css">
-
-
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/aos.css">
-
-  <link rel="stylesheet" href="<?SITE_TEMPLATE_PATH?>/css/style.css"> -->
-
 </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+<body>
 
 <?$APPLICATION->ShowPanel()?>
 
@@ -65,7 +44,8 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
       </div>
     </div>
     <div class="site-mobile-menu-body"></div>
-  </div> <!-- .site-mobile-menu -->
+  </div> 
+  <!-- .site-mobile-menu -->
 
   <div class="border-bottom bg-white top-bar">
     <div class="container">
