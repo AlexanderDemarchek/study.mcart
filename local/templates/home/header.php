@@ -2,7 +2,7 @@
 IncludeTemplateLangFile(__FILE__);
 ?>
 
-<html>
+<html lang=<?LANGUAGE_ID?>>
 <head>
 <?$APPLICATION->ShowHead();?>
 <title><?$APPLICATION->ShowTitle()?></title>
