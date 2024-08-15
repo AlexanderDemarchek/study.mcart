@@ -32,6 +32,7 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
 <?$APPLICATION->ShowPanel()?>
 
 <?if($USER->IsAdmin()):?>
+  <?endif?>
 
 <div class="site-loader"></div>
 
@@ -125,7 +126,7 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
               <span class="text-danger">.</span>
             </strong></a></h1>
         </div>
-        <div class="col-4 col-md-4 col-lg-8"><body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+        <!-- <div class="col-4 col-md-4 col-lg-8">
           <nav class="site-navigation text-right text-md-right" role="navigation">
 
             <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
@@ -155,30 +156,34 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
               <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
+            </nav>
+        </div> -->
 
-            <?$APPLICATION->IncludeComponent(
-	            "bitrix:menu",
-              "",
-              Array(
+            <?
+            $APPLICATION->IncludeComponent(
+              "bitrix:menu", 
+              "horizontal_multilevel1", 
+              array(
                 "ALLOW_MULTI_SELECT" => "N",
                 "CHILD_MENU_TYPE" => "left",
                 "DELAY" => "N",
                 "MAX_LEVEL" => "3",
-                "MENU_CACHE_GET_VARS" => array(""),
-                "MENU_CACHE_TIME" => "3600",
-                "MENU_CACHE_TYPE" => "N",
+                "MENU_CACHE_GET_VARS" => array(
+                ),
+                "MENU_CACHE_TIME" => "31 536 000",
+                "MENU_CACHE_TYPE" => "A",
                 "MENU_CACHE_USE_GROUPS" => "Y",
                 "ROOT_MENU_TYPE" => "top",
-                "USE_EXT" => "N"
-              )
-            );?>
-          </nav>
-        </div>
-
+                "USE_EXT" => "N",
+                "COMPONENT_TEMPLATE" => "horizontal_multilevel1",
+                "MENU_THEME" => "site"
+              ),
+              false
+            );
+            ?>
 
       </div>
     </div>
   </div>
 </div>  
 
-<?endif?>

@@ -52,7 +52,7 @@ $APPLICATION->SetTitle("Главная страница");
 		"AJAX_OPTION_STYLE" => "Y",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "172800",
+		"CACHE_TIME" => "31 536 000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
 		"COMPONENT_TEMPLATE" => ".default",
@@ -405,7 +405,7 @@ $APPLICATION->SetTitle("Главная страница");
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "172800",
+		"CACHE_TIME" => "31 536 000",
 		"CACHE_TYPE" => "A",
 		"DETAIL_URL" => "#SITE_DIR#/obyavleniya/#ELEMENT_CODE#/",
 		"FIELD_CODE" => array(
@@ -490,7 +490,7 @@ $APPLICATION->SetTitle("Главная страница");
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "4850000",
+		"CACHE_TIME" => "31 536 000",
 		"CACHE_TYPE" => "A",
 		"COMPONENT_TEMPLATE" => ".default",
 		"DETAIL_URL" => "https://lichess.org/",
@@ -573,7 +573,7 @@ $APPLICATION->SetTitle("Главная страница");
 		"SORT_ORDER2" => "ASC",
 		"DETAIL_URL" => "",
 		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "604800",
+		"CACHE_TIME" => "31 536 000",
 		"CACHE_GROUPS" => "Y",
 		"ACTIVE_DATE_FORMAT" => "d.m.Y"
 	),
