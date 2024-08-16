@@ -1,12 +1,15 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-IncludeTemplateLangFile(__FILE__);
 ?>
-
+<? 
+  use Bitrix\Main\Localization\Loc;
+  Loc::loadLanguageFile(__FILE__);
+?>
 <html lang=<?LANGUAGE_ID?>>
 <head>
 <?$APPLICATION->ShowHead();?>
 <title><?$APPLICATION->ShowTitle()?></title>
 <?
+
  use Bitrix\Main\Page\Asset;
 
 Asset::getInstance()->addCss("https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500");
@@ -37,7 +40,6 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
 <div class="site-loader"></div>
 
 <div class="site-wrap">
-
   <div class="site-mobile-menu">
     <div class="site-mobile-menu-header">
       <div class="site-mobile-menu-close mt-3">

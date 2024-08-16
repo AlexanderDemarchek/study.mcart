@@ -17,7 +17,7 @@ $this->setFrameMode(true);
       <div class="row mb-5">
         <div class="col-12">
           <div class="site-section-title">
-            <h2>Новые предложения для Вас</h2>
+            <h2><?=GetMessage("NEW_PROPERTIES")?></h2>
           </div>
         </div>
       </div>
@@ -42,19 +42,19 @@ $this->setFrameMode(true);
               <div class="prop-more-info">
                 <div class="inner d-flex">
                   <div class="col">
-                    <span>Площадь:</span>
+                    <span><?=GetMessage("AREA")?>:</span>
                     <strong><?= $arItem['PROPERTY_SQUARE_VALUE'] ?>м<sup>2</sup></strong>
                   </div>
                   <div class="col">
-                    <span>Этаж:</span>
+                    <span><?=GetMessage("FLOOR")?>:</span>
                     <strong><?= $arItem['PROPERTY_FLOORS_VALUE'] ?></strong>
                   </div>
                   <div class="col">
-                    <span>Санузлов:</span>
+                    <span><?=GetMessage("BATHROOMS")?>:</span>
                     <strong><?= $arItem['PROPERTY_BATHROOMS_VALUE'] ?></strong>
                   </div>
                   <div class="col">
-                    <span>Гараж:</span>
+                    <span><?=GetMessage("GARAGE")?>:</span>
                     <strong><?= $arItem['PROPERTY_HAVE_GARAGE_VALUE'] ?></strong>
                   </div>
                 </div>

@@ -1,1 +1,1 @@
-some email
+nedvijimost@mail.ru

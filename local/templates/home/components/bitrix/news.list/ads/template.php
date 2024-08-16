@@ -26,7 +26,7 @@ $this->setFrameMode(true);
 		$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
 
-	<div class="site-blocks-cover" style="background-image: url(<?= $arItem["PREVIEW_PICTURE"]["SRC"]?>);" data-aos="fade"
+	<div class="site-blocks-cover" style="background-image: url(<?= $arItem["DETAIL_PICTURE"]["SRC"]?>);" data-aos="fade"
 	data-stellar-background-ratio="0.5">
 
 	<div class="text">

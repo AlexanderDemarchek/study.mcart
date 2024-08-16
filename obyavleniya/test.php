@@ -3,39 +3,36 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Тест");
 ?>
 
-
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.line", 
-	"new_ads", 
+	"news", 
 	array(
-		"ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "31 536 000",
-		"CACHE_TYPE" => "A",
-		"DETAIL_URL" => "#SITE_DIR#/obyavleniya/#ELEMENT_CODE#/",
-		"FIELD_CODE" => array(
-			0 => "PREVIEW_PICTURE",
-			1 => "DETAIL_PICTURE",
-			2 => "PROPERTY_PRICE",
-			3 => "PROPERTY_FLOORS",
-			4 => "PROPERTY_SQUARE",
-			5 => "PROPERTY_HAVE_GARAGE",
-			6 => "PROPERTY_BATHROOMS",
-			7 => "",
-		),
+		"COMPONENT_TEMPLATE" => "news",
+		"IBLOCK_TYPE" => "news",
 		"IBLOCKS" => array(
-			0 => "5",
+			0 => "1",
 		),
-		"IBLOCK_TYPE" => "ads",
-		"NEWS_COUNT" => "9",
+		"NEWS_COUNT" => "3",
+		"FIELD_CODE" => array(
+			0 => "NAME",
+			1 => "PREVIEW_PICTURE",
+			2 => "DETAIL_TEXT",
+			3 => "DATE_CREATE",
+			4 => "",
+		),
 		"SORT_BY1" => "ACTIVE_FROM",
-		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
+		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
-		"COMPONENT_TEMPLATE" => "new_ads"
+		"DETAIL_URL" => "",
+		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "31 536 000",
+		"CACHE_GROUPS" => "Y",
+		"ACTIVE_DATE_FORMAT" => "j M Y"
 	),
 	false
 );?>
+
 
 
 
