@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Обратная связь");
+$APPLICATION->AddChainItem("Обратная связь", SITE_DIR . "/o-servise/kontakty/obratnaya-svyaz.php");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:main.feedback",
 	"",

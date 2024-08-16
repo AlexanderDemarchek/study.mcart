@@ -13,6 +13,7 @@
 $this->setFrameMode(true);
 ?>
 
+
 <div class="slide-one-item home-slider owl-carousel">
 
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>

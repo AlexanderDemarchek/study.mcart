@@ -1,4 +1,5 @@
 <?
+$PERM["obyavleniya"]["14"]="W";
 $PERM["index.php"]["2"]="R";
 $PERM["index.php"]["14"]="X";
 $PERM["index.php"]["9"]="R";
@@ -17,7 +18,6 @@ $PERM["/"]["12"]="D";
 $PERM["/"]["*"]="D";
 $PERM["info_inc.html"]["14"]="W";
 $PERM[".info_inc.html"]["14"]="W";
-$PERM["obyavleniya"]["14"]="W";
 $PERM["o-servise"]["14"]="W";
 $PERM["lichnyy-kabinet-prodavtsa"]["14"]="W";
 $PERM["lichnyy-kabinet-prodavtsa"]["2"]="D";

@@ -1,6 +1,6 @@
 <?
 $sSectionName = "Объявления";
-$arDirProperties = Array(
-
+$arDirProperties = array(
+   "not_show_nav_chain" => "Y"
 );
 ?>

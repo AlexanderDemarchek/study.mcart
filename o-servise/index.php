@@ -10,4 +10,4 @@ $APPLICATION->SetTitle("О сервисе");
 		"EDIT_TEMPLATE" => "",
 		"PATH" => ".info_ink.html"
 	)
-);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
