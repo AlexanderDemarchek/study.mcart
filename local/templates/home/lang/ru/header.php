@@ -14,4 +14,9 @@
     $MESS["ABOUT_US"] = "О нас";
     $MESS["HOME"] = "На главную";
     $MESS["NAV"] = "Навигация";
+    $MESS["PROPERTY_DETAILS"] = "Детально о";
+    $MESS["CURRENCY_SYMBOL"] = "₽";
+    $MESS["DATE"] = "Дата";
+    $MESS["MORE_INFO"] = "Детально";
+    $MESS["PROPERTY_GALLERY"] = "Фотографии объявления";
 ?>

@@ -33,7 +33,7 @@ $this->setFrameMode(true);
 	<div class="text">
 		<h2><?= $arItem["NAME"]?></h2>
 		<p class="location"><span class="property-icon icon-room"></span> <?= $arItem["NAME"]?></p>
-		<p class="mb-2"><strong>₽<?= $arItem['PROPERTIES']['PRICE']['VALUE']?></strong></p>
+		<p class="mb-2"><strong>₽<?= $arItem['DISPLAY_PROPERTIES']['PRICE']['VALUE']?></strong></p>
 
 
 		<p class="mb-0"><a href="<?= $arItem["DETAIL_PAGE_URL"]?>" class="text-uppercase small letter-spacing-1 font-weight-bold">Подробнее</a></p>

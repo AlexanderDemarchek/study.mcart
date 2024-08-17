@@ -61,7 +61,8 @@ $APPLICATION->SetTitle("Главная страница");
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "PRIORITY",
-			1 => "",
+			1 => "PRICE",
+			2 => "",
 		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
