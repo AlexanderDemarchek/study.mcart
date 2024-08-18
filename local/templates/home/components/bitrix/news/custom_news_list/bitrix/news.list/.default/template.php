@@ -171,63 +171,67 @@ $this->setFrameMode(true);
 			$end = $arResult["NAV_RESULT"]->NavPageCount;
 			$cur = $arResult["NAV_RESULT"]->NavPageNomer;
 		?>
+    <?if($end!=1):?>
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="site-pagination">
-				<?if($end > 6):?>
-					<?if(($cur - $begin)>2 && ($end-$cur)>2):?>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $begin?>" class="">
-							<?= $begin?>
-						</a>
-						<span>...</span>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $cur-1?>" class="">
-							<?= $cur-1?>
-						</a>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $cur?>" class="active">
-							<?= $cur?>
-						</a>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $cur+1?>" class="">
-							<?= $cur+1?>
-						</a>
-						<span>...</span>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $end?>" class="">
-							<?= $end?>
-						</a>
-					<?elseif(($cur - $begin) < 4):?>
-						<?for($i = 1; $i <= 5; $i++):?>
-							<a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
-								<?= $i?>
-							</a>
-						<?endfor;?>
-						<span>...</span>
-							<a href="<?=$urlCurDir . "?PAGEN_1=" . $end?>" class="">
-								<?= $end?>
-							</a>
-					<?else:?>
-						<a href="<?=$urlCurDir . "?PAGEN_1=" . $begin?>" class="">
-							<?= $begin?>
-						</a>
-						<span>...</span>
-						<?for($i = $end-4; $i <= $end; $i++):?>
-							<a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
-								<?= $i?>
-							</a>
-						<?endfor;?>
-					<?endif;?>
+            <?if($end > 6):?>
+              <?if(($cur - $begin)>2 && ($end-$cur)>2):?>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $begin?>" class="">
+                  <?= $begin?>
+                </a>
+                <span>...</span>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $cur-1?>" class="">
+                  <?= $cur-1?>
+                </a>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $cur?>" class="active">
+                  <?= $cur?>
+                </a>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $cur+1?>" class="">
+                  <?= $cur+1?>
+                </a>
+                <span>...</span>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $end?>" class="">
+                  <?= $end?>
+                </a>
+              <?elseif(($cur - $begin) < 4):?>
+                <?for($i = 1; $i <= 5; $i++):?>
+                  <a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
+                    <?= $i?>
+                  </a>
+                <?endfor;?>
+                <span>...</span>
+                  <a href="<?=$urlCurDir . "?PAGEN_1=" . $end?>" class="">
+                    <?= $end?>
+                  </a>
+              <?else:?>
+                <a href="<?=$urlCurDir . "?PAGEN_1=" . $begin?>" class="">
+                  <?= $begin?>
+                </a>
+                <span>...</span>
+                <?for($i = $end-4; $i <= $end; $i++):?>
+                  <a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
+                    <?= $i?>
+                  </a>
+                <?endfor;?>
+              <?endif;?>
 
-				<?else:?>
-				<?for($i = 1; $i <= $end; $i++):?>
-					<a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
-						<?= $i?>
-					</a>
-				<?endfor;?>
-				<?endif;?>
+            <?else:?>
+            <?for($i = 1; $i <= $end; $i++):?>
+              <a href="<?=$urlCurDir . "?PAGEN_1=" . $i?>" class="<?= $i == $cur ? 'active' : '' ?>">
+                <?= $i?>
+              </a>
+            <?endfor;?>
+            <?endif;?>
+                </div>
+              </div>  
             </div>
-          </div>  
-        </div>
-<?endif;?>
+            <?endif;?>  
+    <?endif;?>
 
 </div>
+
+
 
 
 

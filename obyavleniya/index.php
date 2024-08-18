@@ -96,6 +96,7 @@ $APPLICATION->SetTitle("Объявления");
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
+		"SET_CUSTOM_TITLE" => "\"asiufhgpiuahdfgiufg\"",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",

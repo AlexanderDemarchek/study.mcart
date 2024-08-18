@@ -9,9 +9,9 @@ $APPLICATION->SetTitle("Главная страница");
 ?>
 
 <?
- $arFilter = ['PROPERTY_PRIORITY_VALUE' => 'Приоритетная'];
- 
 
+ $arFilter['PROPERTY_PRIORITY_VALUE'] = 'Приоритетная';
+ 
  $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"ads", 
