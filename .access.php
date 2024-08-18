@@ -1,5 +1,8 @@
 <?
+$PERM["obyavleniya"]["2"]="R";
 $PERM["obyavleniya"]["14"]="W";
+$PERM["obyavleniya"]["9"]="R";
+$PERM["obyavleniya"]["12"]="R";
 $PERM["index.php"]["2"]="R";
 $PERM["index.php"]["14"]="X";
 $PERM["index.php"]["9"]="R";
