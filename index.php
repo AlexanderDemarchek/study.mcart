@@ -64,12 +64,12 @@ $APPLICATION->SetTitle("Главная страница");
 			1 => "PRICE",
 			2 => "",
 		),
-		"SET_BROWSER_TITLE" => "Y",
+		"SET_BROWSER_TITLE" => "N",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "Y",
 		"SET_META_KEYWORDS" => "Y",
 		"SET_STATUS_404" => "N",
-		"SET_TITLE" => "Y",
+		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
 		"SORT_BY1" => "PROPERTY_PRIORITY",
 		"SORT_BY2" => "SORT",
@@ -141,7 +141,7 @@ $APPLICATION->SetTitle("Главная страница");
 									"AREA_FILE_SUFFIX" => "inc",
 									"COMPONENT_TEMPLATE" => ".default",
 									"EDIT_TEMPLATE" => "",
-									"PATH" => SITE_TEMPLATE_PATH."/include/page/col3.php"
+									"PATH" => SITE_TEMPLATE_PATH . "/include/page/col3.php"
 								)
 							);?>
               			</p>
@@ -245,4 +245,5 @@ $APPLICATION->SetTitle("Главная страница");
 	),
 	false
 );?>
+
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

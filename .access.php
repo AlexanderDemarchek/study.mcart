@@ -1,4 +1,6 @@
 <?
+$PERM["user"]["*"]="R";
+$PERM["login"]["*"]="R";
 $PERM["obyavleniya"]["2"]="R";
 $PERM["obyavleniya"]["14"]="W";
 $PERM["obyavleniya"]["9"]="R";
