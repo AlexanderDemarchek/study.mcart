@@ -420,7 +420,7 @@ a:hover {
   padding-right: 0;
 }
 .site-navbar .site-navigation .site-menu > li:last-child > a {
-  padding-right: 0;
+  /* padding-right: 0; */
 }
 .site-navbar .site-navigation .site-menu .has-children {
   position: relative;
@@ -472,6 +472,10 @@ a:hover {
   width: 0;
   position: absolute;
   pointer-events: none;
+}
+
+.dropdown{
+  z-index:100;
 }
 .site-navbar .site-navigation .site-menu .has-children .dropdown.arrow-top:before {
   border-color: rgba(136, 183, 213, 0);
