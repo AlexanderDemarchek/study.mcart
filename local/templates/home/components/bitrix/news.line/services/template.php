@@ -32,13 +32,16 @@ $this->setFrameMode(true);
 			$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 			$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 		?>
-
         <div class="col-md-6 col-lg-4 mb-4" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-          <a href="<?=$arItem["PROPERTY_LINK_VALUE"]?>" class="service text-center border rounded">
+        <div class="border rounded">
+        <div style="padding-top:30px">
+          <a href="<?=$arItem["PROPERTY_LINK_VALUE"]?>" class="service text-center">
             <span class="<?=$arrIcons[$key%3]?>"></span>
             <h2 class="service-heading"><?= $arItem["PROPERTY_TITLE_VALUE"]?></h2>
-            <p><span class="read-more">Подробнее</span></p>
+            <p><span class="read-more"><?=GetMessage("DETAILS")?></span></p>
           </a>
+          </div>
+          </div>
         </div>
 		<?endforeach?>
       </div>

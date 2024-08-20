@@ -11,6 +11,8 @@
     $MESS["OUR_BLOG"] = "Наш блог";
     $MESS["ABOUT_SITE"] = "Про нас";
     $MESS["FOLLOW_US"] = "Подпишитесь";
+    $MESS["DETAILS"] = "Подробнее";
+    $MESS["NAVIGATIONS"] = "Навигация";
     $MESS["ABOUT_US"] = "О нас";
     $MESS["HOME"] = "На главную";
     $MESS["NAV"] = "Навигация";
