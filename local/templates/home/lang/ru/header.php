@@ -20,5 +20,6 @@
     $MESS["MORE_INFO"] = "Детально";
     $MESS["PROPERTY_GALLERY"] = "Фотографии объявления";
     $MESS["LOGIN"] = "Авторизация";
-    $MESS["YUOR_NAME"] = "Ваше имя"
+    $MESS["YUOR_NAME"] = "Ваше имя";
+    $MESS["AUTH_LOGIN"] = "Логин"
 ?>
