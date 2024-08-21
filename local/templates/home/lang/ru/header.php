@@ -23,5 +23,9 @@
     $MESS["PROPERTY_GALLERY"] = "Фотографии объявления";
     $MESS["LOGIN"] = "Авторизация";
     $MESS["YUOR_NAME"] = "Ваше имя";
-    $MESS["AUTH_LOGIN"] = "Логин"
+    $MESS["AUTH_LOGIN"] = "Логин";
+    $MESS["REGISTER_HOW"] = "Зарегистрироваться как";
+    $MESS["BUYER"] = "Покупатель";
+    $MESS["SELLER"] = "Продавец";
+    $MESS["REGISTER"] = "Регистрация";
 ?>

@@ -91,7 +91,8 @@ if(!empty($arParams["~AUTH_RESULT"]["MESSAGE"])):
               <div class="row form-group">
                 <div class="col-md-12">
                   <input type="submit" value="Send Message" class="btn btn-primary  py-2 px-4 rounded-0">
-                </div>
+					
+				</div>
               </div>
 
   
@@ -185,197 +186,91 @@ new BX.PhoneAuth({
 					</script>
 				<?endif?>
                   <label class="font-weight-bold" for="email"><span style="color:orange;">*</span> <?=GetMessage("AUTH_PASSWORD_REQ")?></label>
-                  <input type="password" name="USER_PASSWORD" maxlength="255" value="<?=$arResult["USER_PASSWORD"]?>" autocomplete="off" class="form-control" placeholder="Email Address">
+                  <input type="password" name="USER_PASSWORD" maxlength="255" value="<?=$arResult["USER_PASSWORD"]?>" autocomplete="off" class="form-control" placeholder=<?=GetMessage("AUTH_PASSWORD_REQ")?>>
                 </div>
               </div>
 
+			  <div class="row form-group">
+                <div class="col-md-12">
+				<?if($arResult["SECURE_AUTH"]):?>
+					<div class="bx-authform-psw-protected" id="bx_auth_secure_conf" style="display:none"><div class="bx-authform-psw-protected-desc"><span></span><?echo GetMessage("AUTH_SECURE_NOTE")?></div></div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" class="form-control" placeholder="Email Address">
+					<script>
+						document.getElementById('bx_auth_secure_conf').style.display = '';
+					</script>
+				<?endif?>
+                  <label class="font-weight-bold" for="authconf"><span style="color:orange;">*</span> <?=GetMessage("AUTH_CONFIRM")?></label>
+                  <input type="password" id="authconf" class="form-control" placeholder="<?=GetMessage("AUTH_CONFIRM")?>"
+				  name="USER_CONFIRM_PASSWORD" maxlength="255" value="<?=$arResult["USER_CONFIRM_PASSWORD"]?>" autocomplete="off">
                 </div>
               </div>
+
+			<?if($arResult["EMAIL_REGISTRATION"]):?>
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Subject</label>
-                  <input type="text" id="subject" class="form-control" placeholder="Enter Subject">
+                  <label class="font-weight-bold" for="email"><?if($arResult["EMAIL_REQUIRED"]):?><span style="color:orange;">*</span><?endif?> <?=GetMessage("AUTH_EMAIL")?></label>
+                  <input type="email" id="email" name="USER_EMAIL" class="form-control" 
+				  placeholder="<?=GetMessage("AUTH_EMAIL")?>" maxlength="255" value="<?=$arResult["USER_EMAIL"]?>">
                 </div>
               </div>
+			<?endif?>
+
+			
+			<div class="row form-group">
+			<div class="col-md-12">
+			   <label class="font-weight-bold"><?=GetMessage("REGISTER_HOW")?>:</label>
+			    </div>
+				</div>
+				<div class="row form-group">
+                <div class="col-md-3">
+				<input type="radio" name="USER_GROUP" checked value="buyer"/>
+				<label for="buyer"><?=GetMessage("BUYER")?></label>
+				</div>
+
+				<div class="col-md-3">
+				<input type="radio" name="USER_GROUP" value="seller"/>
+				<label for="seller"><?=GetMessage("SELLER")?></label>
+				</div>					  
+            </div>
+
+
+			<?if ($arResult["USE_CAPTCHA"] == "Y"):?>
+				<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+
+				<div class="row form-group">
+				
+                <div class="col-md-12">
+					<label class="font-weight-bold" for="captcha">
+						<span style="color:orange;">*</span> <?=GetMessage("CAPTCHA_REGF_PROMT")?>
+					</label>
+					<div class="bx-captcha" style="margin-bottom:10px;"><img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" /></div>
+						<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" id="captha"/>
+					</div>
+                </div>
+			<?endif?>
               
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="font-weight-bold" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us"></textarea>
-                </div>
+				<input type="submit" class="btn btn-primary" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
+				</div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary  py-2 px-4 rounded-0">
-                </div>
-              </div>
+			  <hr class="bxe-light">
+
+			<div class="bx-authform-description-container">
+				<?echo $arResult["GROUP_POLICY"]["PASSWORD_REQUIREMENTS"];?>
+			</div>
+
+			<div class="bx-authform-description-container">
+				<span style="color:orange;">*</span> <?=GetMessage("AUTH_REQ")?>
+			</div>
+
+			<div class="bx-authform-link-container">
+				<a href="<?=$arResult["AUTH_AUTH_URL"]?>" rel="nofollow"><b><?=GetMessage("AUTH_AUTH")?></b></a>
+			</div>
+
             </form>
-          
-
-            
-
-	<form method="post" action="<?=$arResult["AUTH_URL"]?>" name="bform" enctype="multipart/form-data">
-		<input type="hidden" name="AUTH_FORM" value="Y" />
-		<input type="hidden" name="TYPE" value="REGISTRATION" />
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?=GetMessage("AUTH_NAME")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_NAME" maxlength="255" value="<?=$arResult["USER_NAME"]?>" />
-			</div>
-		</div>
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?=GetMessage("AUTH_LAST_NAME")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_LAST_NAME" maxlength="255" value="<?=$arResult["USER_LAST_NAME"]?>" />
-			</div>
-		</div>
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><span class="bx-authform-starrequired">*</span><?=GetMessage("AUTH_LOGIN_MIN")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_LOGIN" maxlength="255" value="<?=$arResult["USER_LOGIN"]?>" />
-			</div>
-		</div>
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><span class="bx-authform-starrequired">*</span><?=GetMessage("AUTH_PASSWORD_REQ")?></div>
-			<div class="bx-authform-input-container">
-<?if($arResult["SECURE_AUTH"]):?>
-				<div class="bx-authform-psw-protected" id="bx_auth_secure" style="display:none"><div class="bx-authform-psw-protected-desc"><span></span><?echo GetMessage("AUTH_SECURE_NOTE")?></div></div>
-
-<script>
-document.getElementById('bx_auth_secure').style.display = '';
-</script>
-<?endif?>
-				<input type="password" name="USER_PASSWORD" maxlength="255" value="<?=$arResult["USER_PASSWORD"]?>" autocomplete="off" />
-			</div>
-		</div>
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><span class="bx-authform-starrequired">*</span><?=GetMessage("AUTH_CONFIRM")?></div>
-			<div class="bx-authform-input-container">
-<?if($arResult["SECURE_AUTH"]):?>
-				<div class="bx-authform-psw-protected" id="bx_auth_secure_conf" style="display:none"><div class="bx-authform-psw-protected-desc"><span></span><?echo GetMessage("AUTH_SECURE_NOTE")?></div></div>
-
-<script>
-document.getElementById('bx_auth_secure_conf').style.display = '';
-</script>
-<?endif?>
-				<input type="password" name="USER_CONFIRM_PASSWORD" maxlength="255" value="<?=$arResult["USER_CONFIRM_PASSWORD"]?>" autocomplete="off" />
-			</div>
-		</div>
-
-<?if($arResult["EMAIL_REGISTRATION"]):?>
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?if($arResult["EMAIL_REQUIRED"]):?><span class="bx-authform-starrequired">*</span><?endif?><?=GetMessage("AUTH_EMAIL")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_EMAIL" maxlength="255" value="<?=$arResult["USER_EMAIL"]?>" />
-			</div>
-		</div>
-<?endif?>
-
-<?if($arResult["PHONE_REGISTRATION"]):?>
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?if($arResult["PHONE_REQUIRED"]):?><span class="bx-authform-starrequired">*</span><?endif?><?echo GetMessage("main_register_phone_number")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_PHONE_NUMBER" maxlength="255" value="<?=$arResult["USER_PHONE_NUMBER"]?>" />
-			</div>
-		</div>
-<?endif?>
-
-<?if($arResult["USER_PROPERTIES"]["SHOW"] == "Y"):?>
-	<?foreach ($arResult["USER_PROPERTIES"]["DATA"] as $FIELD_NAME => $arUserField):?>
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?if ($arUserField["MANDATORY"]=="Y"):?><span class="bx-authform-starrequired">*</span><?endif?><?=$arUserField["EDIT_FORM_LABEL"]?></div>
-			<div class="bx-authform-input-container">
-<?
-$APPLICATION->IncludeComponent(
-	"bitrix:system.field.edit",
-	$arUserField["USER_TYPE"]["USER_TYPE_ID"],
-	array(
-		"bVarsFromForm" => $arResult["bVarsFromForm"],
-		"arUserField" => $arUserField,
-		"form_name" => "bform"
-	),
-	null,
-	array("HIDE_ICONS"=>"Y")
-);
-?>
-			</div>
-		</div>
-
-	<?endforeach;?>
-<?endif;?>
-<?if ($arResult["USE_CAPTCHA"] == "Y"):?>
-		<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
-
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container">
-				<span class="bx-authform-starrequired">*</span><?=GetMessage("CAPTCHA_REGF_PROMT")?>
-			</div>
-			<div class="bx-captcha"><img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" /></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off"/>
-			</div>
-		</div>
-
-<?endif?>
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container">
-			</div>
-			<div class="bx-authform-input-container">
-				<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "",
-					array(
-						"ID" => COption::getOptionString("main", "new_user_agreement", ""),
-						"IS_CHECKED" => "Y",
-						"AUTO_SAVE" => "N",
-						"IS_LOADED" => "Y",
-						"ORIGINATOR_ID" => $arResult["AGREEMENT_ORIGINATOR_ID"],
-						"ORIGIN_ID" => $arResult["AGREEMENT_ORIGIN_ID"],
-						"INPUT_NAME" => $arResult["AGREEMENT_INPUT_NAME"],
-						"REPLACE" => array(
-							"button_caption" => GetMessage("AUTH_REGISTER"),
-							"fields" => array(
-								rtrim(GetMessage("AUTH_NAME"), ":"),
-								rtrim(GetMessage("AUTH_LAST_NAME"), ":"),
-								rtrim(GetMessage("AUTH_LOGIN_MIN"), ":"),
-								rtrim(GetMessage("AUTH_PASSWORD_REQ"), ":"),
-								rtrim(GetMessage("AUTH_EMAIL"), ":"),
-							)
-						),
-					)
-				);?>
-			</div>
-		</div>
-		<div class="bx-authform-formgroup-container">
-			<input type="submit" class="btn btn-primary" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
-		</div>
-
-		<hr class="bxe-light">
-
-		<div class="bx-authform-description-container">
-			<?echo $arResult["GROUP_POLICY"]["PASSWORD_REQUIREMENTS"];?>
-		</div>
-
-		<div class="bx-authform-description-container">
-			<span class="bx-authform-starrequired">*</span><?=GetMessage("AUTH_REQ")?>
-		</div>
-
-		<div class="bx-authform-link-container">
-			<a href="<?=$arResult["AUTH_AUTH_URL"]?>" rel="nofollow"><b><?=GetMessage("AUTH_AUTH")?></b></a>
-		</div>
-
-	</form>
 
 <script>
 document.bform.USER_NAME.focus();
@@ -392,5 +287,3 @@ document.bform.USER_NAME.focus();
         </div>
       </div>
     </div>
-
-<pre><?= print_r($arResult)?></pre>

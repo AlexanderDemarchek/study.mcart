@@ -89,7 +89,7 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
             </a>
           </p>
         </div>
-        <div class="col-5 col-md-5 text-right">
+        <div class="col-4 col-md-4 text-right">
           <?$APPLICATION->IncludeComponent(
                     "bitrix:main.include", 
                     ".default", 
@@ -105,6 +105,10 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
         </div>
         <div class="col-1 col-md-1 text-right">
           <a href="/login" class="text-black"><?=GetMessage("LOGIN")?></a>
+        </div>
+        
+        <div class="col-1 col-md-1 text-right">
+          <a href="/user/register.php" class="text-black"><?=GetMessage("REGISTER")?></a>
         </div>  
       </div>
     </div>
