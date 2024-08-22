@@ -154,29 +154,29 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
 
             $entity = self::getEntityDataClassById($arHlblock); // получить класс для работы с хлблоком
              $arTypeAgents = self::getFieldListValue($arHlblock, 'UF_TYPE'); // получить массив со значениями списочного свойства Виды деятельности агентов
-        //     $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents); // получить массив со списком агентов и объектом для пагинации
+            $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents); // получить массив со списком агентов и объектом для пагинации
 
 
-        //     if ($this->cacheInvalid) {
-        //         $this->taggedCache->abortTagCache();
-        //         $this->cache->abortDataCache();
-        //     }
+            if ($this->cacheInvalid) {
+                $this->taggedCache->abortTagCache();
+                $this->cache->abortDataCache();
+            }
 
-        //     $this->taggedCache->endTagCache(); // конец области, для тегированого кеша
-        //     $this->cache->endDataCache($this->arResult); // запись arResult в кеш
+            $this->taggedCache->endTagCache(); // конец области, для тегированого кеша
+            $this->cache->endDataCache($this->arResult); // запись arResult в кеш
         }
 
-        // /*
-        //  * Получить Избранных агентов для текущего пользователя записать их в массив $this->arResult['STAR_AGENTS']
-        //  * Это можно зделать с помощью CUserOptions::GetOption
-        //  */ 
-        //  $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name);
-        // /*
-        //  * Данного метода нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
-        //  * $category - это категория настройки, можете придумать любую, например mcart_agent
-        //  * $name - это название настройки, например options_agents_star
-        //  * Эти настройки храняться в таблице b_user_option
-        //  */
+        /*
+         * Получить Избранных агентов для текущего пользователя записать их в массив $this->arResult['STAR_AGENTS']
+         * Это можно зделать с помощью CUserOptions::GetOption
+         */ 
+         $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name);
+        /*
+         * Данного метода нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
+         * $category - это категория настройки, можете придумать любую, например mcart_agent
+         * $name - это название настройки, например options_agents_star
+         * Эти настройки храняться в таблице b_user_option
+         */
         $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents);
         
         $this->IncludeComponentTemplate(); // вызов шаблона компонента
@@ -254,15 +254,20 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
                 "FIELD_NAME" => $fieldName,
             ],
         ])->Fetch()["ID"];
+        $result = [];
 
         if ($fieldID) {
             /*
              *  Получить список свойств для $fieldID используя класс CUserFieldEnum
              */
-            $result = CUserFieldEnum::GetList(
+            $fieldsObj = CUserFieldEnum::GetList(
                 [],
                 ["USER_FIELD_ID" => $fieldID]
-            )->fetch();
+            );
+            while($preResult = $fieldsObj->fetch()){
+                $result[$preResult["ID"]] = $preResult;
+            }
+            
         }
 
         return $result;
@@ -309,15 +314,20 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
              * 2. В свойстве Фото записан ID файла из таблицы b_file,
              * если значение есть, то получить путь через класс \CFile
              */
-            //$arAgent["UF_TYPE"] = $arTypeAgents[$arAgent["UF_TYPE"]];
-            $arAgents[] = $arAgent;
-            //$arAgents['ITEMS'][$arAgent['ID']] = $arAgent; // Записываем получившийся массив в $arAgents['ITEMS']
+            if(is_set($arAgent["UF_PHOTO"])){
+                $arAgent["PHOTO_PATH"] = CFile::GetPath(
+                    $arAgent["UF_PHOTO"]
+                );
+            }
+            $arAgent["TYPE"] = $arTypeAgents[$arAgent["UF_TYPE"]]["VALUE"];
+            
+            $arAgents['ITEMS'][$arAgent['ID']] = $arAgent; // Записываем получившийся массив в $arAgents['ITEMS']
         }
 
-        // $nav->setRecordCount($rsAgents->getCount()); // В объект для пагинации передаем общее количество агентов
-        // $arAgents['NAV_OBJECT'] = $nav; // Записываем получившийся объект в $arAgents['NAV_OBJECT']
+         $nav->setRecordCount(count($arAgents["ITEMS"])); // В объект для пагинации передаем общее количество агентов
+         $arAgents['NAV_OBJECT'] = $nav; // Записываем получившийся объект в $arAgents['NAV_OBJECT']
 
-         return $arTypeAgents; // Возвращаем результат
+         return $arAgents; // Возвращаем результат
     }
 
 
