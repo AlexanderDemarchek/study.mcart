@@ -122,6 +122,9 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
     final public function executeComponent(): void
     {
         
+            //CUserOptions::SetOption("mcart_agent", "options_agents_star", [2,3,4], false, 2);
+
+        
         if (empty($this->arParams["HLBLOCK_TNAME"])) {
             /**
              * Если параметр Название таблицы (TABLE_NAME) Highload-блока не задан,
@@ -145,6 +148,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
         )) { // если кеш есть
             $this->arResult =  $this->cache->getVars();
         } elseif ($this->cache->startDataCache()) { // если кеша нет
+            
              $this->taggedCache->startTagCache($this->cachePatch); // старт для области, для тегированного кеша
 
             $this->arResult = []; // объявим результирующий массив
@@ -154,7 +158,16 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
             $this->taggedCache->registerTag('hlblock_table_name_' . $arHlblock['TABLE_NAME']); // Регистрируем кеш, чтобы по нему на событиях добавление/изменение/удаление элементов хлблока сбрасывать кеш компонента
 
             $entity = self::getEntityDataClassById($arHlblock); // получить класс для работы с хлблоком
-             $arTypeAgents = self::getFieldListValue($arHlblock, 'UF_TYPE'); // получить массив со значениями списочного свойства Виды деятельности агентов
+            $arTypeAgents = self::getFieldListValue($arHlblock, 'UF_TYPE'); // получить массив со значениями списочного свойства Виды деятельности агентов
+
+            $this->arResult['entity'] = $entity;
+            $this->arResult['arTypeAgents'] = $arTypeAgents;
+            $this->arResult['arHlblock'] = $arHlblock;
+            
+            $entity = $this->arResult['entity'];
+            $arTypeAgents = $this->arResult['arTypeAgents'];
+            $arHlblock = $this->arResult['arHlblock'];
+
             $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents); // получить массив со списком агентов и объектом для пагинации
 
 
@@ -171,15 +184,22 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
          * Получить Избранных агентов для текущего пользователя записать их в массив $this->arResult['STAR_AGENTS']
          * Это можно зделать с помощью CUserOptions::GetOption
          */ 
-         $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name);
+         //if($DB->Query("SELECT "){
+         $category = "mcart_agent";
+         $name = "options_agents_star";
+         global $USER;
+         $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name, false,2);
+        // }
         /*
          * Данного метода нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
          * $category - это категория настройки, можете придумать любую, например mcart_agent
          * $name - это название настройки, например options_agents_star
-         * Эти настройки храняться в таблице b_user_option
+         * Эти настройки храняться в таблице b_user_optionoptions_agents_star
          */
         $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents);
         
+        
+
         $this->IncludeComponentTemplate(); // вызов шаблона компонента
      }
 
@@ -330,7 +350,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
         }
 
          $nav->setRecordCount($rsAgents->getCount()); // В объект для пагинации передаем общее количество агентов
-         $arAgents['NAV_OBJECT'] = $nav; // Записываем получившийся объект в $arAgents['NAV_OBJECT']
+         $arAgents['NAV_OBJECT'] = $nav ; // Записываем получившийся объект в $arAgents['NAV_OBJECT']
         //
         $arAgents["component"] = $this;
         //
@@ -382,6 +402,10 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
          * (его нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
          * 5. Отправить на фронт в массиве $result в ключе 'action' значение 'success', если все прошло удачно
          */
+
+         if(!CUserOptions::GetList("mcart_agent","options_agents_star")){
+            CUserOptions::SetOption("mcart_agent", "options_agents_star", $agentID, true, 1);
+         }
 
 
         return $result;

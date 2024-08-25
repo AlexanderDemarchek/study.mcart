@@ -8,18 +8,8 @@
     //         )
     // );
 
-        $eventManager = \Bitrix\Main\EventManager::getInstance();
-
-        $eventManager->addEventHandler('', 'agentsOnAfterAdd', 'clearagentsCache');
-        $eventManager->addEventHandler('', 'agentsOnAfterUpdate', 'clearagentsCache');
-        $eventManager->addEventHandler('', 'agentsOnAfterDelete', 'clearagentsCache');
         
-        function clearagentsCache($event)
-        {
-                
-            $taggedCache = \Bitrix\Main\Application::getInstance()->getTaggedCache();
-            $taggedCache->clearByTag('hlblock_table_name_' . $tableName);
-        }
 
     include("include/OnAuth.php");
+    include("include/clearHblockCash.php");
 ?>

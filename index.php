@@ -246,9 +246,4 @@ $APPLICATION->SetTitle("Главная страница");
 	false
 );?>
 
-<?
-// \Bitrix\Main\IO\File::__construct(
-// 	"/yohoho.php",
-// );
-?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
