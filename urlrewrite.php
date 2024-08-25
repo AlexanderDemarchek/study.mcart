@@ -16,7 +16,7 @@ $arUrlRewrite=array (
     'PATH' => '/o-servise/vakansii/index.php',
     'SORT' => 100,
   ),
-  16 => 
+  20 => 
   array (
     'CONDITION' => '#^/o-servise/novosti/#',
     'RULE' => '',
@@ -24,7 +24,7 @@ $arUrlRewrite=array (
     'PATH' => '/o-servise/novosti/index.php',
     'SORT' => 100,
   ),
-  17 => 
+  19 => 
   array (
     'CONDITION' => '#^/obyavleniya/#',
     'RULE' => '',
@@ -54,6 +54,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/news/index.php',
+    'SORT' => 100,
+  ),
+  21 => 
+  array (
+    'CONDITION' => '#^#',
+    'RULE' => '',
+    'ID' => 'bitrix:main.pagenavigation',
+    'PATH' => '/local/components/mcart/agents.list/templates/.default/template.php',
     'SORT' => 100,
   ),
 );

@@ -31,6 +31,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
     protected string $cacheKey;
     protected string $cachePatch;
 
+
     /**
      * Получение ошибок
      */
@@ -144,12 +145,12 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
         )) { // если кеш есть
             $this->arResult =  $this->cache->getVars();
         } elseif ($this->cache->startDataCache()) { // если кеша нет
-            $this->taggedCache->startTagCache($this->cachePatch); // старт для области, для тегированного кеша
+             $this->taggedCache->startTagCache($this->cachePatch); // старт для области, для тегированного кеша
 
             $this->arResult = []; // объявим результирующий массив
 
             $arHlblock = self::getHlblockTableName($this->arParams["HLBLOCK_TNAME"]); // получить хлблок по TABLE_NAME
-
+            
             $this->taggedCache->registerTag('hlblock_table_name_' . $arHlblock['TABLE_NAME']); // Регистрируем кеш, чтобы по нему на событиях добавление/изменение/удаление элементов хлблока сбрасывать кеш компонента
 
             $entity = self::getEntityDataClassById($arHlblock); // получить класс для работы с хлблоком
@@ -164,7 +165,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
 
             $this->taggedCache->endTagCache(); // конец области, для тегированого кеша
             $this->cache->endDataCache($this->arResult); // запись arResult в кеш
-        }
+         }
 
         /*
          * Получить Избранных агентов для текущего пользователя записать их в массив $this->arResult['STAR_AGENTS']
@@ -287,27 +288,31 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
         ];
 
         //Объек для для пагинации, подробнее можно почитать 
+        
        $nav = new \Bitrix\Main\UI\PageNavigation("nav-agents");
         $nav->allowAllRecords(true)
-            ->setPageSize($this->arParams['NEWS_COUNT']) //Нужно передать параметр Количество элементов из мввсива $this->arParams
+            ->setPageSize($this->arParams['AGENTS_COUNT']) //Нужно передать параметр Количество элементов из мввсива $this->arParams
             ->initFromUri();
-
+            
         
         $rsAgents = $entity::GetList([
             "select" => array("*"),
             "order" => array("ID" => "DESC"),
-            "filter" => array("UF_ACTIVE"=> true) 
+            "filter" => array("UF_ACTIVE"=> true),
+            "count_total" => true,
+            "offset" => $nav->getOffset(),
+             "limit" => $nav->getLimit(),
             /*
              * С помощью GetList запросить список "Активных" агентов,
              * в запросе ограничить количество агентов (использовать объект для пагинации) 
              * https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2741
              */
         ]);
-    
+
         while ($arAgent = $rsAgents->fetch()) {
             /**
              * Обработает полученный массив
-             * 
+             *  
              * 1. В свойстве Вид деятельности записан ID значения списка,
              * с помощью массива $arTypeAgents определить значение
              * 
@@ -324,9 +329,11 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
             $arAgents['ITEMS'][$arAgent['ID']] = $arAgent; // Записываем получившийся массив в $arAgents['ITEMS']
         }
 
-         $nav->setRecordCount(count($arAgents["ITEMS"])); // В объект для пагинации передаем общее количество агентов
+         $nav->setRecordCount($rsAgents->getCount()); // В объект для пагинации передаем общее количество агентов
          $arAgents['NAV_OBJECT'] = $nav; // Записываем получившийся объект в $arAgents['NAV_OBJECT']
-
+        //
+        $arAgents["component"] = $this;
+        //
          return $arAgents; // Возвращаем результат
     }
 

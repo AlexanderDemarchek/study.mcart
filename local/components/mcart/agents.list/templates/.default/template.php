@@ -21,9 +21,6 @@ $this->setFrameMode(true);
  * Для постраничной навигации использовать компонент bitrix:main.pagenavigation
  */
 ?>
-
-
-
     <div class="site-section site-section-sm bg-light">
       <div class="container agents-list">
         <div class="row mb-5">
@@ -38,7 +35,7 @@ $this->setFrameMode(true);
             <div class="agent__card">
                 <div class="small-info">
                     <div class="avatar" 
-                    style="background-image: url(<?=$item["PHOTO_PATH"] ? $item["PHOTO_PATH"] : (SITE_TEMPLATE_PATH . "/images/no-avatar.png")?>);"></div>
+                    style="background-image: url(<?=$item["PHOTO_PATH"] ? $item["PHOTO_PATH"] : ($templateFolder . "/images/no-avatar.png")?>);"></div>
                     <div class="info">
                         <div class="name"><?=$item["UF_NAME"]?> <?=$item["UF_SURNAME"]?></div>
                     </div>
@@ -67,25 +64,20 @@ $this->setFrameMode(true);
             </div>        
         </div>
         <?endforeach;?>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="site-pagination">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <span>...</span>
-              <a href="#">10</a>
-            </div>
-          </div>  
-        </div>
-        
+        <?
+          $APPLICATION->IncludeComponent(
+          "bitrix:main.pagenavigation", 
+          "custom_pagination", 
+          array(
+            "NAV_OBJECT" => $arResult["AGENTS"]["NAV_OBJECT"],
+          ),
+          $component
+          );
+        ?>
       </div>
     </div>
+    <pre><?= print_r($arParams)?></pre>
 
-<pre>
-    <?= print_r($arResult)?>
-</pre>
+  
 
 

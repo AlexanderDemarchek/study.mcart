@@ -9,10 +9,11 @@ $APPLICATION->AddChainItem("Агенты", SITE_DIR . "/o-servise/agenty.php");
 	".default", 
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
-		"NEWS_COUNT" => "20",
+		"NEWS_COUNT" => "3",
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
-		"HLBLOCK_TNAME" => "agents"
+		"HLBLOCK_TNAME" => "agents",
+		"AGENTS_COUNT" => "3"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -19,7 +19,7 @@ $arComponentParameters = array(
             "TYPE" => "STRING", // Тип поля
             "DEFAULT" => "", // Значение по дефолту
         ),
-        "NEWS_COUNT" => [
+        "AGENTS_COUNT" => [
 			"PARENT" => "BASE",
 			"NAME" => GetMessage("T_HBLOCK_DESC_LIST_CONT"),
 			"TYPE" => "STRING",
