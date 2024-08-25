@@ -122,7 +122,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
     final public function executeComponent(): void
     {
         
-            //CUserOptions::SetOption("mcart_agent", "options_agents_star", [2,3,4], false, 2);
+            //CUserOptions::SetOption("mcart_agent", "options_agents_star", 1, false, 2);
 
         
         if (empty($this->arParams["HLBLOCK_TNAME"])) {
@@ -184,12 +184,12 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
          * Получить Избранных агентов для текущего пользователя записать их в массив $this->arResult['STAR_AGENTS']
          * Это можно зделать с помощью CUserOptions::GetOption
          */ 
-         //if($DB->Query("SELECT "){
+            
          $category = "mcart_agent";
          $name = "options_agents_star";
+         //CUserOptions::SetOption($category, $name,[2], false, 2);
          global $USER;
-         $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name, false,2);
-        // }
+         $this->arResult['STAR_AGENTS'] = CUserOptions::GetOption($category, $name, false, $USER->GetID());
         /*
          * Данного метода нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
          * $category - это категория настройки, можете придумать любую, например mcart_agent
@@ -402,10 +402,42 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
          * (его нет в документации, код метода и его параметры можно найти в ядре (/bitrix/modules/main/) или в гугле
          * 5. Отправить на фронт в массиве $result в ключе 'action' значение 'success', если все прошло удачно
          */
+        
+        
 
-         if(!CUserOptions::GetList("mcart_agent","options_agents_star")){
-            CUserOptions::SetOption("mcart_agent", "options_agents_star", $agentID, true, 1);
-         }
+        global $USER;
+
+        if($starOpt = CUserOptions::GetOption("mcart_agent", "options_agents_star", false, $USER->GetID())){
+            
+            if(!is_array($starOpt)){
+                $a = $starOpt;
+                $arr = [$a];
+                $starOpt = $arr;
+            }else{
+
+                if(in_array($agentID, $starOpt)){
+                    $keyPos = array_search($agentID, $starOpt);
+                    unset($starOpt[$keyPos]);
+                    $value = $starOpt;
+                }
+                else{
+                    array_push($starOpt, $agentID);
+                    $value = $starOpt;  
+                }
+        }
+
+        }
+        else{
+            $value = [$agentID];
+        }
+
+        
+        CUserOptions::SetOption("mcart_agent", "options_agents_star",
+                        $value, false, $USER->GetID());
+        
+
+        $result["action"] = "success";
+        $result["data"] = $value;
 
 
         return $result;
