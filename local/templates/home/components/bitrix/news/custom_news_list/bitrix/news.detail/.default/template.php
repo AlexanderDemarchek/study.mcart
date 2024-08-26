@@ -80,10 +80,6 @@ $this->setFrameMode(true);
               </div>
               <div class="row mb-5">
                 <div class="col-md-6 col-lg-4 text-left border-bottom border-top py-3">
-                  <span class="d-inline-block text-black mb-0 caption-text">Home Type</span>
-                  <strong class="d-block">Condo</strong>
-                </div>
-                <div class="col-md-6 col-lg-4 text-left border-bottom border-top py-3">
                   <span class="d-inline-block text-black mb-0 caption-text"><?=GetMessage("BATHROOMS")?></span>
                   <strong class="d-block"><?= $arResult["DISPLAY_PROPERTIES"]["BATHROOMS"]["VALUE"]?></strong>
                 </div>
@@ -154,5 +150,23 @@ $this->setFrameMode(true);
           </div>
           
         </div>
+        <div class="row mt-5">
+                <div class="col-12">
+                  <h2 class="h4 text-black mb-3"><?=GetMessage("MATERIALS")?></h2>
+                </div>
+          </div>
+
+          <div class="row mt-5">
+                <div class="col-12">
+                  <h2 class="h4 text-black mb-3"><?=GetMessage("LINKS")?></h2>
+                </div>
+                <?foreach($arResult["DISPLAY_PROPERTIES"]["LINKS"]["VALUE"] as $link):?>
+                  <div class="col-12">
+                  <a href="<?=$link?>"><?= parse_url($link, PHP_URL_HOST) ?></a>
+                </div>
+                <?endforeach;?>
+          </div>
       </div>
     </div>
+
+    <pre><?=print_r($arResult)?></pre>

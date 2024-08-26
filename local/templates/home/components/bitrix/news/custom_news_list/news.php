@@ -36,6 +36,7 @@ if($arParams["USE_SEARCH"]=="Y"):?>
 		['HIDE_ICONS' => 'Y']
 );?>
 <br />
+
 <?php
 endif;
 if($arParams["USE_FILTER"]=="Y"):
@@ -58,6 +59,8 @@ $APPLICATION->IncludeComponent(
 );
 ?>
 <br />
+
+
 <?php
 endif;
 
@@ -118,4 +121,8 @@ $APPLICATION->IncludeComponent(
 	$component
 );
 ?>
+
+
+
+
 
