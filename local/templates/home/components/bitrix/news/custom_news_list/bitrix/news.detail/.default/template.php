@@ -154,19 +154,27 @@ $this->setFrameMode(true);
                 <div class="col-12">
                   <h2 class="h4 text-black mb-3"><?=GetMessage("MATERIALS")?></h2>
                 </div>
-          </div>
+          
 
-          <div class="row mt-5">
+  
+          <?foreach($arResult["DISPLAY_PROPERTIES"]["MATERIALS"] as $material):?>
                 <div class="col-12">
-                  <h2 class="h4 text-black mb-3"><?=GetMessage("LINKS")?></h2>
-                </div>
-                <?foreach($arResult["DISPLAY_PROPERTIES"]["LINKS"]["VALUE"] as $link):?>
-                  <div class="col-12">
-                  <a href="<?=$link?>"><?= parse_url($link, PHP_URL_HOST) ?></a>
+                  <a href="<?=$material["SRC"]?>"><?= $material["ORIGINAL_NAME"]?></a>
                 </div>
                 <?endforeach;?>
+        </div>
+
+          <div class="row mt-5">
+              <div class="col-12">
+                <h2 class="h4 text-black mb-3"><?=GetMessage("LINKS")?></h2>
+              </div>
+              <?foreach($arResult["DISPLAY_PROPERTIES"]["LINKS"]["VALUE"] as $link):?>
+                <div class="col-12">
+                <a href="<?=$link?>"><?= parse_url($link, PHP_URL_HOST) ?></a>
+              </div>
+              <?endforeach;?>
           </div>
       </div>
     </div>
 
-    <pre><?=print_r($arResult)?></pre>
+  

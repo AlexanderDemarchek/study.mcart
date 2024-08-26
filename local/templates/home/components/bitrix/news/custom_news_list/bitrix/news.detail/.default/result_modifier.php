@@ -10,6 +10,6 @@ if(CModule::IncludeModule("iblock")){
     );
     while($propertyData = $materialsProperty->fetch()){
         $materialID = $propertyData["VALUE"];
-        $arResult["DISPLAY_PROPERTIES"]["MATERIALS"][] = CFile::GetByID($materialID);
+        $arResult["DISPLAY_PROPERTIES"]["MATERIALS"][] = CFile::GetByID($materialID)->fetch();
     }
 }
