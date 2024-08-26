@@ -160,13 +160,13 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
             $entity = self::getEntityDataClassById($arHlblock); // получить класс для работы с хлблоком
             $arTypeAgents = self::getFieldListValue($arHlblock, 'UF_TYPE'); // получить массив со значениями списочного свойства Виды деятельности агентов
 
-            $this->arResult['entity'] = $entity;
-            $this->arResult['arTypeAgents'] = $arTypeAgents;
-            $this->arResult['arHlblock'] = $arHlblock;
+            // $this->arResult['entity'] = $entity;
+            // $this->arResult['arTypeAgents'] = $arTypeAgents;
+            // $this->arResult['arHlblock'] = $arHlblock;
             
-            $entity = $this->arResult['entity'];
-            $arTypeAgents = $this->arResult['arTypeAgents'];
-            $arHlblock = $this->arResult['arHlblock'];
+            // $entity = $this->arResult['entity'];
+            // $arTypeAgents = $this->arResult['arTypeAgents'];
+            // $arHlblock = $this->arResult['arHlblock'];
 
             $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents); // получить массив со списком агентов и объектом для пагинации
 
