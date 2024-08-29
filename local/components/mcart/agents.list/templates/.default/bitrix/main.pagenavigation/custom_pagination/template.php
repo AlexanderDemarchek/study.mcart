@@ -34,7 +34,7 @@ else
 					<a class="active">1</a>
 			<?endif?>
 			
-			<?if ($arResult["CURRENT_PAGE"] > 3):?>
+			<?if ($arResult["CURRENT_PAGE"] > 4):?>
 				<span>...</span>
 			<?endif;?>
 
@@ -50,7 +50,7 @@ else
 				<?$page++?>
 			<?endwhile?>
 
-			<?if ($arResult["CURRENT_PAGE"] < $arResult["PAGE_COUNT"]-2):?>
+			<?if ($arResult["CURRENT_PAGE"] < $arResult["PAGE_COUNT"]-3):?>
 				<span>...</span>
 			<?endif;?>
 

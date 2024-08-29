@@ -29,9 +29,12 @@ $arTemplateParameters = array(
 		"REFRESH"=> "Y",
 	),
 	"CUSTOM_TITLE" => Array(
-		"NAME" => "Пользовательский заголовок",
+		"NAME" => "Заголовок списка новостей",
 		"TYPE" => "STRING",
-		"DEFAULT" =>"",
+		"DEFAULT" =>"Новые предложения",
+		"REFRESH"=> "Y",
+		"MULTIPLE" => "N",
+		"COLS" => 25,
 		"REFRESH"=> "Y",
 	),
 );

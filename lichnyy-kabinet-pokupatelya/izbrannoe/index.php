@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("Избранное");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
-		"DETAIL_URL" => "#SITE_DIR#/lichyy-kabinet-pokupatelya/izbrannoe/#ELEMENT_CODE#/",
+		"DETAIL_URL" => "#SITE_DIR#/lichnyy-kabinet-pokupatelya/izbrannoe/#ELEMENT_CODE#",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
@@ -33,7 +33,7 @@ $APPLICATION->SetTitle("Избранное");
 		"IBLOCK_ID" => "5",
 		"IBLOCK_TYPE" => "ads",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-		"INCLUDE_SUBSECTIONS" => "Y",
+		"INCLUDE_SUBSECTIONS" => "N",
 		"MESSAGE_404" => "",
 		"NEWS_COUNT" => "5",
 		"PAGER_BASE_LINK_ENABLE" => "N",
@@ -66,4 +66,4 @@ $APPLICATION->SetTitle("Избранное");
 	),
 	false
 );?><br>
-<p>asfvafd</p><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

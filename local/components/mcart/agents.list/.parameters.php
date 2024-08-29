@@ -25,7 +25,7 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 			"DEFAULT" => "1",
 		],
-        "CACHE_TIME"  =>  ["DEFAULT"=>36000000]
+        "CACHE_TIME"  =>  Array()
     ),
 );
 

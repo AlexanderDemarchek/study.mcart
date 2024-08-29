@@ -63,10 +63,6 @@ $APPLICATION->IncludeComponent(
 
 <?php
 endif;
-
-
-global $myAdsFilter;
-$myAdsFilter['CREATED_BY'] = $GLOBALS['USER']->GetID();
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"",
@@ -113,10 +109,11 @@ $APPLICATION->IncludeComponent(
 		"ACTIVE_DATE_FORMAT" => $arParams["LIST_ACTIVE_DATE_FORMAT"],
 		"USE_PERMISSIONS" => $arParams["USE_PERMISSIONS"],
 		"GROUP_PERMISSIONS" => $arParams["GROUP_PERMISSIONS"],
-		"FILTER_NAME" => "myAdsFilter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 		"CHECK_DATES" => $arParams["CHECK_DATES"],
-		"USE_FILTER" => "Y"
+		"USE_FILTER" => "Y",
+		"FILTER_NAME" => $arParams["~FILTER_NAME"],
+		"CUSTOM_TITLE" => $arParams["CUSTOM_TITLE"]
 	],
 	$component
 );

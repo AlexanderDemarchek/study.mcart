@@ -4,7 +4,13 @@ $APPLICATION->SetTitle("Мои объявления");
 
 ?>
  
-<?$APPLICATION->IncludeComponent(
+<?
+
+
+global $myAdsFilter;
+$myAdsFilter['CREATED_BY'] = $GLOBALS['USER']->GetID();
+
+$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"custom_news_list", 
 	array(
@@ -29,7 +35,6 @@ $APPLICATION->SetTitle("Мои объявления");
 			0 => "TIMESTAMP_X",
 			1 => "",
 		),
-		"FILTER_NAME" => "myAdsFilter",
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
@@ -63,8 +68,9 @@ $APPLICATION->SetTitle("Мои объявления");
 			1 => "FLOORS",
 			2 => "HAVE_GARAGE",
 			3 => "SQUARE",
-			4 => "PRICE",
-			5 => "",
+			4 => "LINKS",
+			5 => "PRICE",
+			6 => "",
 		),
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
@@ -91,13 +97,14 @@ $APPLICATION->SetTitle("Мои объявления");
 		"STRICT_SECTION_CHECK" => "N",
 		"USE_CATEGORIES" => "N",
 		"USE_FILTER" => "N",
+		"FILTER_NAME" => "myAdsFilter",
 		"USE_PERMISSIONS" => "N",
 		"USE_RATING" => "N",
 		"USE_REVIEW" => "N",
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
-		"CUSTOM_TITLE" => "\"Мои объявления\"",
+		"CUSTOM_TITLE" => "Мои объявления",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",

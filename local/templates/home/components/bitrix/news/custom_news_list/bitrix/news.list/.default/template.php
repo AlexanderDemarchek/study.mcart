@@ -117,7 +117,7 @@ $this->setFrameMode(true);
       <div class="row mb-5">
         <div class="col-12">
           <div class="site-section-title">
-            <h2><?=GetMessage("NEW_PROPERTIES")?></h2>
+            <h2><?=$arParams["CUSTOM_TITLE"]?></h2>
           </div>
         </div>
       </div>
@@ -165,7 +165,6 @@ $this->setFrameMode(true);
 		<?endforeach;?>
     </div>
   </div>
-  
 
   <?
           $APPLICATION->IncludeComponent(
@@ -177,10 +176,10 @@ $this->setFrameMode(true);
           $component
           );
         ?>
-  	
-
 
 </div>
+
+
 
 
 
