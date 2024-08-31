@@ -88,7 +88,6 @@ $this->setFrameMode(true);
         ?>
       </div>
     </div>
-    <pre><?= print_r($component)?></pre>
 
   
 

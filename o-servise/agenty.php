@@ -13,7 +13,7 @@ $APPLICATION->AddChainItem("Агенты", SITE_DIR . "/o-servise/agenty.php");
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
 		"HLBLOCK_TNAME" => "agents",
-		"AGENTS_COUNT" => "3"
+		"AGENTS_COUNT" => "4"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -122,9 +122,6 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
     final public function executeComponent(): void
     {
         
-            //CUserOptions::SetOption("mcart_agent", "options_agents_star", 1, false, 2);
-
-        
         if (empty($this->arParams["HLBLOCK_TNAME"])) {
             /**
              * Если параметр Название таблицы (TABLE_NAME) Highload-блока не задан,
@@ -149,7 +146,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
             $this->arResult =  $this->cache->getVars();
         } elseif ($this->cache->startDataCache()) { // если кеша нет
             
-             $this->taggedCache->startTagCache($this->cachePatch); // старт для области, для тегированного кеша
+            $this->taggedCache->startTagCache($this->cachePatch); // старт для области, для тегированного кеша
 
             $this->arResult = []; // объявим результирующий массив
 
@@ -178,6 +175,10 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
 
             $this->taggedCache->endTagCache(); // конец области, для тегированого кеша
             $this->cache->endDataCache($this->arResult); // запись arResult в кеш
+
+            //$this->initCache($this->arParams);
+
+            $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents);
          }
 
         /*
@@ -196,9 +197,6 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
          * $name - это название настройки, например options_agents_star
          * Эти настройки храняться в таблице b_user_optionoptions_agents_star
          */
-        $this->arResult['AGENTS'] = $this->getAgents($entity, $arTypeAgents);
-        
-        
 
         $this->IncludeComponentTemplate(); // вызов шаблона компонента
      }
