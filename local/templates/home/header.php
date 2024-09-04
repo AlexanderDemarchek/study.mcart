@@ -89,6 +89,8 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
             </a>
           </p>
         </div>
+
+        <?if(!$USER->IsAuthorized()):?>
         <div class="col-4 col-md-4 text-right">
           <?$APPLICATION->IncludeComponent(
                     "bitrix:main.include", 
@@ -104,12 +106,33 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
             );?>
         </div>
         <div class="col-1 col-md-1 text-right">
-          <a href="/login" class="text-black"><?=GetMessage("LOGIN")?></a>
+          <a href="<?=SITE_DIR?>user/" class="text-black"><?=GetMessage("LOGIN")?></a>
         </div>
         
         <div class="col-1 col-md-1 text-right">
-          <a href="/user/register.php" class="text-black"><?=GetMessage("REGISTER")?></a>
+          <a href="<?=SITE_DIR?>user/register.php" class="text-black"><?=GetMessage("REGISTER")?></a>
         </div>  
+        <?else:?>
+
+          <div class="col-5 col-md-5 text-right">
+          <?$APPLICATION->IncludeComponent(
+                    "bitrix:main.include", 
+                    ".default", 
+                    array(
+                      "AREA_FILE_SHOW" => "file",
+                      "AREA_FILE_SUFFIX" => "inc",
+                      "EDIT_TEMPLATE" => "",
+                      "PATH" => SITE_TEMPLATE_PATH .  "/include/header/icons.php",
+                      "COMPONENT_TEMPLATE" => ".default"
+                    ),
+                    false
+            );?>
+        </div>
+        <div class="col-1 col-md-1 text-right">
+          <a href="<?=SITE_DIR?>user/" class="text-black"><?=GetMessage("LOGIN")?></a>
+        </div>
+        <?endif;?>
+        
       </div>
     </div>
 
@@ -148,7 +171,7 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
 		),
 		"MENU_CACHE_TIME" => "31 536 000",
 		"MENU_CACHE_TYPE" => "A",
-		"MENU_CACHE_USE_GROUPS" => "N",
+		"MENU_CACHE_USE_GROUPS" => "Y",
 		"ROOT_MENU_TYPE" => "top",
 		"USE_EXT" => "N",
 		"COMPONENT_TEMPLATE" => "horizontal_multilevel1",

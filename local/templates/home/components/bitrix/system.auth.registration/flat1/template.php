@@ -31,123 +31,22 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/system.auth/flat/style.css");
 
 <div class="site-section">
       <div class="container">
-        <div class="row">
-       
+        <div class="row">  
           <div class="col-md-12 col-lg-8 mb-5">
+			<?
+			if(!empty($arParams["~AUTH_RESULT"]["MESSAGE"])):
+				$text = str_replace(array("<br>", "<br />"), "\n", $arParams["~AUTH_RESULT"]["MESSAGE"]);
+			?>
+				<div class="alert <?=($arParams["~AUTH_RESULT"]["TYPE"] == "OK"? "alert-success":"alert-danger")?>"><?=nl2br(htmlspecialcharsbx($text))?></div>
+			<?endif?>
 
-<?
-if(!empty($arParams["~AUTH_RESULT"]["MESSAGE"])):
-	$text = str_replace(array("<br>", "<br />"), "\n", $arParams["~AUTH_RESULT"]["MESSAGE"]);
-?>
-	<div class="alert <?=($arParams["~AUTH_RESULT"]["TYPE"] == "OK"? "alert-success":"alert-danger")?>"><?=nl2br(htmlspecialcharsbx($text))?></div>
-<?endif?>
+			<?if($arResult["SHOW_EMAIL_SENT_CONFIRMATION"]):?>
+				<div class="alert alert-success"><?echo GetMessage("AUTH_EMAIL_SENT")?></div>
+			<?endif?>
 
-<?if($arResult["SHOW_EMAIL_SENT_CONFIRMATION"]):?>
-	<div class="alert alert-success"><?echo GetMessage("AUTH_EMAIL_SENT")?></div>
-<?endif?>
-
-<?if(!$arResult["SHOW_EMAIL_SENT_CONFIRMATION"] && $arResult["USE_EMAIL_CONFIRMATION"] === "Y"):?>
-	<div class="alert alert-warning"><?echo GetMessage("AUTH_EMAIL_WILL_BE_SENT")?></div>
-<?endif?>
-
-<?if($arResult["SHOW_SMS_FIELD"] == true):?>
-	<div class="site-section">
-      <div class="container">
-        <div class="row">
-       
-          <div class="col-md-12 col-lg-8 mb-5">
-          
-            
-          
-            <form action="#" class="p-5 bg-white border">
-
-              <div class="row form-group">
-                <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="font-weight-bold" for="fullname">Full Name</label>
-                  <input type="text" id="fullname" class="form-control" placeholder="Full Name">
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" class="form-control" placeholder="Email Address">
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="email">Subject</label>
-                  <input type="text" id="subject" class="form-control" placeholder="Enter Subject">
-                </div>
-              </div>
-              
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="font-weight-bold" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us"></textarea>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary  py-2 px-4 rounded-0">
-					
-				</div>
-              </div>
-
-  
-            </form>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-<form method="post" action="<?=$arResult["AUTH_URL"]?>" name="regform">
-
-	<input type="hidden" name="SIGNED_DATA" value="<?=htmlspecialcharsbx($arResult["SIGNED_DATA"])?>" />
-
-	<div class="bx-authform-formgroup-container">
-		<div class="bx-authform-label-container"><span class="bx-authform-starrequired">*</span><?echo GetMessage("main_register_sms_code")?></div>
-		<div class="bx-authform-input-container">
-			<input type="text" name="SMS_CODE" maxlength="255" value="<?=htmlspecialcharsbx($arResult["SMS_CODE"] ?? '')?>" autocomplete="off" />
-		</div>
-	</div>
-
-	<div class="bx-authform-formgroup-container">
-		<input type="submit" class="btn btn-primary" name="code_submit_button" value="<?echo GetMessage("main_register_sms_send")?>" />
-	</div>
-
-</form>
-
-<script>
-new BX.PhoneAuth({
-	containerId: 'bx_register_resend',
-	errorContainerId: 'bx_register_error',
-	interval: <?=$arResult["PHONE_CODE_RESEND_INTERVAL"]?>,
-	data:
-		<?= Json::encode([
-			'signedData' => $arResult["SIGNED_DATA"],
-		]) ?>,
-	onError:
-		function(response)
-		{
-			var errorNode = BX('bx_register_error');
-			errorNode.innerHTML = '';
-			for(var i = 0; i < response.errors.length; i++)
-			{
-				errorNode.innerHTML = errorNode.innerHTML + BX.util.htmlspecialchars(response.errors[i].message) + '<br />';
-			}
-			errorNode.style.display = '';
-		}
-});
-</script>
-
-<div id="bx_register_error" style="display:none" class="alert alert-danger"></div>
-
-<div id="bx_register_resend"></div>
-
-<?elseif(!$arResult["SHOW_EMAIL_SENT_CONFIRMATION"]):?>
+			<?if(!$arResult["SHOW_EMAIL_SENT_CONFIRMATION"] && $arResult["USE_EMAIL_CONFIRMATION"] === "Y"):?>
+				<div class="alert alert-warning"><?echo GetMessage("AUTH_EMAIL_WILL_BE_SENT")?></div>
+			<?endif?>
 
             <form method="post" action="<?=$arResult["AUTH_URL"]?>" name="bform" enctype="multipart/form-data" class="p-5 bg-white border">
 				<input type="hidden" name="AUTH_FORM" value="Y" />
@@ -252,7 +151,7 @@ new BX.PhoneAuth({
 
               <div class="row form-group">
                 <div class="col-md-12">
-				<input type="submit" class="btn btn-primary" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
+					<input type="submit" class="btn btn-primary" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
 				</div>
               </div>
 
@@ -267,22 +166,16 @@ new BX.PhoneAuth({
 			</div>
 
 			<div class="bx-authform-link-container">
-				<a href="<?=$arResult["AUTH_AUTH_URL"]?>" rel="nofollow"><b><?=GetMessage("AUTH_AUTH")?></b></a>
+				<a href="<?=SITE_DIR . "user/"?>" rel="nofollow"><b><?=GetMessage("AUTH_AUTH")?></b></a>
 			</div>
 
             </form>
 
-<script>
-document.bform.USER_NAME.focus();
-</script>
-
-<?endif?>
-
+			<script>
+				document.bform.USER_NAME.focus();
+			</script>
 </noindex>
-
-
-			</div>
-            
+			</div>   
           </div>
         </div>
       </div>
