@@ -182,9 +182,12 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/system.auth/flat/style.css");
     </div>
 
 <?
-	if($_GET["register"] == "yes"){
-		$path= SITE_DIR . 'user/';
-		LocalRedirect($path);
-	}
+	// if($_GET["register"] == "yes"){
+	// 	$path= SITE_DIR . 'user/';
+	// 	LocalRedirect($path);
+	// }
 ?>
+
+
+<pre><?=print_r($arResult)?></pre>
 	
