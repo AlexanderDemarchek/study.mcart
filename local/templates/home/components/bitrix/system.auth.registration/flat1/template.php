@@ -170,7 +170,7 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/system.auth/flat/style.css");
 			</div>
 
             </form>
-
+			
 			<script>
 				document.bform.USER_NAME.focus();
 			</script>
@@ -180,3 +180,11 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/system.auth/flat/style.css");
         </div>
       </div>
     </div>
+
+<?
+	if($_GET["register"] == "yes"){
+		$path= SITE_DIR . 'user/';
+		LocalRedirect($path);
+	}
+?>
+	
