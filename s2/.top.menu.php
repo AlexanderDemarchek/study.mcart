@@ -2,28 +2,28 @@
 $aMenuLinks = Array(
 	Array(
 		"Компания", 
-		"company/", 
+		"/s2/company/", 
 		Array(), 
-		Array(), 
+		Array("SUB_TEXT"=>"текст для пункта \"Компания\""), 
 		"" 
 	),
 	Array(
 		"Новости", 
-		"news/", 
+		"/s2/news/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Продукция", 
-		"products/", 
+		"/s2/products/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Услуги", 
-		"services/", 
+		"/s2/services/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -32,7 +32,7 @@ $aMenuLinks = Array(
 		"Партнерам", 
 		"/s2/partneram/", 
 		Array(), 
-		Array(), 
+		Array("SUB_TEXT"=>"текст для пункта \"Партнерам\""), 
 		"" 
 	),
 	Array(
@@ -46,7 +46,7 @@ $aMenuLinks = Array(
 		"Поиск", 
 		"/s2/search/", 
 		Array(), 
-		Array(), 
+		Array("SUB_TEXT"=>"текст для пункта \"Поиск\""), 
 		"" 
 	)
 );

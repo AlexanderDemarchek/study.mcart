@@ -26,32 +26,20 @@ foreach($arResult as $arItem):?>
 
 		<?if ($arItem["DEPTH_LEVEL"] == 1):?>
 			<li>
-				<a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a>
+				<a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
 				<ul>
+				<?if($arItem["PARAMS"]["SUB_TEXT"]):?>
 				<div class="menu-text">
-				<?$APPLICATION->IncludeComponent(
-					"bitrix:main.include",
-					"",
-				Array("AREA_FILE_SHOW" => "file",
-                    "AREA_FILE_SUFFIX" => "inc",
-                    "EDIT_TEMPLATE" => "",
-                    "PATH" => SITE_DIR . "/include_area/menu_". $arItem["NAME"] . "_inc.php")
-				);?>
+					<?=$arItem["PARAMS"]["SUB_TEXT"]?>
 				</div>
+				<?endif;?>
 		<?else:?>
-			<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>" class="parent"><?=$arItem["TEXT"]?></a>
+			<li><a href="<?=$arItem["LINK"]?>" class="parent"><?=$arItem["TEXT"]?></a>
+				<?if($arItem["PARAMS"]["SUB_TEXT"]):?>
 				<div class="menu-text">
-				<?$APPLICATION->IncludeComponent(
-					"bitrix:main.include",
-					"",
-				Array("AREA_FILE_SHOW" => "file",
-                    "AREA_FILE_SUFFIX" => "inc",
-                    "EDIT_TEMPLATE" => "",
-                    "PATH" => SITE_DIR . "/include_area/menu_". $arItem["NAME"] . "_inc.php")
-				);
-				
-				?>
+					<?=$arItem["PARAMS"]["SUB_TEXT"]?>
 				</div>
+				<?endif;?>
 				<ul>
 		<?endif?>
 
@@ -62,13 +50,17 @@ foreach($arResult as $arItem):?>
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
 				<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
-				<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
+				<li>
+					<a href="<?=$arItem["LINK"]?>">
+						<?=$arItem["TEXT"]?>
+					</a>
+				</li>
 			<?endif?>
 
 		<?else:?>
 
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
-				<li><a href="" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
+				<li><a href="" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
 				<li><a href="" class="denied" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
 			<?endif?>

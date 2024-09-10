@@ -38,14 +38,8 @@ $this->setFrameMode(true);
 		</div>
 	<?endforeach;?>
 
-	<?
-          $APPLICATION->IncludeComponent(
-          "bitrix:system.pagenavigation", 
-          "nav", 
-          array(
-            "NAV_RESULT" => $arResult["NAV_RESULT"]
-          ),
-          $component
-          );
-        ?>
+	<?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
+		<br /><?=$arResult["NAV_STRING"]?>
+	<?endif;?>
+	
 

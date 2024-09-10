@@ -10,8 +10,6 @@
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/reset.css");
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/owl.carousel.css");
-        Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css");
-        Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/owl.carousel.css");
 
     ?>
     <link rel="icon" type="image/vnd.microsoft.icon"  href="<?=SITE_TEMPLATE_PATH?>/img/favicon.ico">
@@ -41,17 +39,17 @@
 
                 
                     <?$APPLICATION->IncludeComponent(
-						"bitrix:system.auth.form", 
-						"demo", 
-						array(
-							"FORGOT_PASSWORD_URL" => SITE_DIR."login/",
-							"PROFILE_URL" => SITE_DIR."login/user.php",
-							"REGISTER_URL" => SITE_DIR."login/registration.php",
-							"SHOW_ERRORS" => "N",
-							"COMPONENT_TEMPLATE" => "demo"
-						),
-						false
-					);?>
+	"bitrix:system.auth.form", 
+	"demo", 
+	array(
+		"FORGOT_PASSWORD_URL" => SITE_DIR."login/",
+		"PROFILE_URL" => SITE_DIR."login/user.php",
+		"REGISTER_URL" => SITE_DIR."login/registration.php",
+		"SHOW_ERRORS" => "N",
+		"COMPONENT_TEMPLATE" => "demo"
+	),
+	false
+);?>
 					
                 
             </div>
@@ -59,24 +57,24 @@
         <!-- /header -->
         <!-- nav -->
         <?$APPLICATION->IncludeComponent(
-			"bitrix:menu", 
-			"hor_mult", 
-			array(
-				"COMPONENT_TEMPLATE" => "hor_mult",
-				"ROOT_MENU_TYPE" => "top",
-				"MENU_CACHE_TYPE" => "Y",
-				"MENU_CACHE_TIME" => "3600000",
-				"MENU_CACHE_USE_GROUPS" => "Y",
-				"MENU_CACHE_GET_VARS" => array(
-				),
-				"MAX_LEVEL" => "3",
-				"CHILD_MENU_TYPE" => "left",
-				"USE_EXT" => "N",
-				"DELAY" => "N",
-				"ALLOW_MULTI_SELECT" => "N"
-			),
-			false
-		);?>
+	"bitrix:menu", 
+	"hor_mult", 
+	array(
+		"COMPONENT_TEMPLATE" => "hor_mult",
+		"ROOT_MENU_TYPE" => "top",
+		"MENU_CACHE_TYPE" => "Y",
+		"MENU_CACHE_TIME" => "3600000",
+		"MENU_CACHE_USE_GROUPS" => "Y",
+		"MENU_CACHE_GET_VARS" => array(
+		),
+		"MAX_LEVEL" => "3",
+		"CHILD_MENU_TYPE" => "left",
+		"USE_EXT" => "N",
+		"DELAY" => "N",
+		"ALLOW_MULTI_SELECT" => "N"
+	),
+	false
+);?>
         
         <?
             if($APPLICATION->GetCurPage() != SITE_DIR){

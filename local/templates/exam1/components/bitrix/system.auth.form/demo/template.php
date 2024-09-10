@@ -8,6 +8,14 @@ if ($arResult ['SHOW_ERRORS'] == 'Y' && $arResult ['ERROR'])
 CJSCore::Init();
 ?>
 
+<?include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/classes/general/captcha.php");
+	$cpt = new CCaptcha();
+	$captchaPass = COption::GetOptionString("main", "captcha_password", "");	if(strlen($captchaPass) <= 0)	{	    $captchaPass = randString(10);	    COption::SetOptionString("main", "captcha_password", $captchaPass);
+}
+	$cpt->SetCodeCrypt($captchaPass);
+	?>
+
+
 <?
 if($arResult["FORM_TYPE"] == "login"){?>
 <div class="actions-block" style="padding-top:15px">
@@ -53,7 +61,30 @@ if($arResult["FORM_TYPE"] == "login"){?>
 				</div>
 				<div class="frm-row">
 					<input type="submit" name="Login" value="<?=GetMessage("AUTH_LOGIN_BUTTON")?>">
+				</div>	
+				<div class="frm-row">
+					<p>Войти через:</p>
+				<?
+
+					$APPLICATION->IncludeComponent("bitrix:socserv.auth.form", "icons",
+						array(
+							"AUTH_SERVICES"=>$arResult["AUTH_SERVICES"],
+							"SUFFIX"=>"form",
+						),
+						$component,
+						array("HIDE_ICONS"=>"Y")
+					);
+					?>
 				</div>
+				<?if($arResult["CAPTCHA_CODE"]):?>
+					<div class="frm-row" style="margin-bottom:10px">
+						<p>Введите слово на картинке:</p>
+						<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+						<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" style="margin-bottom:10px"/>
+						<span class="starrequired"></span><?=GetMessage("CAPTCHA_REGF_PROMT")?></td>
+						<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
+					</div>
+				<?endif;?>
 			</form></li>
 		<li><a href="<?=SITE_DIR . "login/registration.php"?>"><?=GetMessage("AUTH_REGISTER")?></a></li>
 	</ul>
@@ -63,7 +94,7 @@ if($arResult["FORM_TYPE"] == "login"){?>
 }
 else
 {
-	$logout = $APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(),
+	$logout = $APPLICATION->GetCurPageParam("logout=yes&login_form=yes&".bitrix_sessid_get(),
 											[
 												"login",
 												"logout",
@@ -76,7 +107,7 @@ else
 
 
 <div class="actions-block">
-                    <form action="<?=SITE_DIR?>" class="main-frm-search">
+                    <form action="<?=$arResult["AUTH_URL"]?>" class="main-frm-search">
                         <input type="text" placeholder="Поиск">
                         <button type="submit"></button>
                     </form>
@@ -88,9 +119,24 @@ else
                             <li><a href="<?=$logout?>">Выйти</a>
                             </li>
                         </ul>
+						
                     </nav>
                 </div>
 <?
 }
+?>
+
+<?
+$APPLICATION->IncludeComponent("bitrix:socserv.auth.form", "",
+	array(
+		"AUTH_SERVICES"=>$arResult["AUTH_SERVICES"],
+		"AUTH_URL"=>$arResult["AUTH_URL"],
+		"POST"=>$arResult["POST"],
+		"POPUP"=>"Y",
+		"SUFFIX"=>"form",
+	),
+	$component,
+	array("HIDE_ICONS"=>"Y")
+);
 ?>
 

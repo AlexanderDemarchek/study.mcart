@@ -13,12 +13,7 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-	<?	
-		$APPLICATION->SetTitle("Отзыв - {$arResult['NAME']} - {$arResult['DISPLAY_PROPERTIES']['COMPANY']['VALUE']}");
-		$APPLICATION->SetPageProperty("title","Отзыв - {$arResult['NAME']}");
-		$APPLICATION->SetPageProperty("keywords","лучшие, отзывы, {$arResult['DISPLAY_PROPERTIES']['COMPANY']['VALUE']}");
-		$APPLICATION->SetPageProperty("description", $arResult["DETAIL_TEXT"]);
-	?>
+
 	<hr>
 	<div class="review-block">
 		<div class="review-text">
