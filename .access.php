@@ -1,4 +1,11 @@
 <?
+$PERM["s2"]["16"]="R";
+$PERM["s2"]["15"]="R";
+$PERM["bitrix"]["2"]="D";
+$PERM["bitrix"]["14"]="D";
+$PERM["bitrix"]["9"]="D";
+$PERM["bitrix"]["16"]="D";
+$PERM["bitrix"]["*"]="R";
 $PERM["/"]["2"]="R";
 $PERM["/"]["14"]="R";
 $PERM["/"]["9"]="R";
@@ -23,10 +30,6 @@ $PERM["login"]["*"]="R";
 $PERM["index.php"]["2"]="R";
 $PERM["index.php"]["14"]="X";
 $PERM["index.php"]["9"]="R";
-$PERM["bitrix"]["2"]="D";
-$PERM["bitrix"]["14"]="D";
-$PERM["bitrix"]["9"]="D";
-$PERM["bitrix"]["*"]="R";
 $PERM["local"]["2"]="R";
 $PERM["local"]["14"]="R";
 $PERM["local"]["9"]="R";
