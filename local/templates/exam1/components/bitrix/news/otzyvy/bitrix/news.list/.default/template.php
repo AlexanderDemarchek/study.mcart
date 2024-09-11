@@ -32,7 +32,22 @@ $this->setFrameMode(true);
 			</div>
 			<div class="review-img-wrap">
 				<a href="<?=$arItem["DETAIL_PAGE_URL"]?>">
-					<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"] ?? SITE_TEMPLATE_PATH . "/img/rew/no_photo.jpg"?>" alt="img">
+					<?
+						$imgSrc = "";
+						if($arItem["DETAIL_PICTURE"]){
+							$resizedImg = CFile::ResizeImageGet(
+								$arItem["DETAIL_PICTURE"],
+								["width" => 68, "height" => 50],
+								BX_RESIZE_IMAGE_EXACT,
+								false
+							);
+							$imgSrc = $resizedImg["src"];
+						}else{
+							$imgSrc = SITE_TEMPLATE_PATH . "/img/rew/no_photo.jpg";
+						}
+
+					?>
+					<img src="<?=$imgSrc?>" alt="img">
 				</a>
 			</div>
 		</div>

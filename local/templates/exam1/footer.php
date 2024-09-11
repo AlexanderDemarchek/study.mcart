@@ -30,12 +30,22 @@
 
 
                     <!-- side anonse -->
-                    <div class="side-block side-anonse">
-                        <div class="title-block"><span class="i i-title01"></span>Полезная информация!</div>
-                        <div class="item">
-                            <p>Клиенты предпочитают все больше эко-материалов.</p>
-                        </div>
-                    </div>
+                    <?
+                        $APPLICATION->IncludeComponent(
+	"bitrix:main.include", 
+	"usefull_info.php", 
+	array(
+		"COMPONENT_TEMPLATE" => "usefull_info.php",
+		"AREA_FILE_SHOW" => "sect",
+		"PATH" => SITE_DIR."useful_info_inc",
+		"EDIT_TEMPLATE" => "",
+		"AREA_FILE_SUFFIX" => "_inc1",
+		"AREA_FILE_RECURSIVE" => "Y"
+	),
+	false
+); 
+                    ?>
+                    
                     <!-- /side anonse -->
                     <!-- side wrap -->
                     <div class="side-wrap">
@@ -107,17 +117,23 @@
     <footer class="footer">
         <div class="inner-wrap">
             <nav class="main-menu">
-                <div class="item">
-                    <div class="title-block">О магазине</div>
-                    <ul>
-                        <li><a href="">Отзывы</a>
-                        </li>
-                        <li><a href="">Руководство </a>
-                        </li>
-                        <li><a href="">История</a>
-                        </li>
-                    </ul>
-                </div>
+                <?
+                    $APPLICATION->IncludeComponent("bitrix:menu", "bottom_menu", Array(
+                    "COMPONENT_TEMPLATE" => ".default",
+                        "ROOT_MENU_TYPE" => "bottom",	// Тип меню для первого уровня
+                        "MENU_CACHE_TYPE" => "N",	// Тип кеширования
+                        "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
+                        "MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
+                        "MENU_CACHE_GET_VARS" => "",	// Значимые переменные запроса
+                        "MAX_LEVEL" => "1",	// Уровень вложенности меню
+                        "CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
+                        "USE_EXT" => "N",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
+                        "DELAY" => "N",	// Откладывать выполнение шаблона меню
+                        "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
+                    ),
+                    false
+                );
+                                ?>
                 <div class="item">
                     <div class="title-block">Каталог товаров</div>
                     <ul>
@@ -148,7 +164,22 @@
                 <div class="title-block"><?=GetMessage("CONTACT_INFO")?></div>
                 <div class="loc-block">
                     <div class="address">ул. Летняя, стр.12, офис 512</div>
-                    <div class="phone"><a href="tel:84952128506">8 (495) 212-85-06</a>
+                    <div class="phone">
+                        
+                            <?
+                                $APPLICATION->IncludeComponent(
+                                "bitrix:main.include", 
+                                ".default", 
+                                array(
+                                    "COMPONENT_TEMPLATE" => ".default",
+                                    "AREA_FILE_SHOW" => "file",
+                                    "PATH" => SITE_TEMPLATE_PATH."/include/phone.php",
+                                    "EDIT_TEMPLATE" => ""
+                                ),
+                                false
+                            );
+                            ?>
+                        
                     </div>
                 </div>
                 <div class="main-soc-block">
