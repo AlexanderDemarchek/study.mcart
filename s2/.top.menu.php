@@ -48,6 +48,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array("SUB_TEXT"=>"текст для пункта \"Поиск\"", "COLOR_CLASS"=>"color-yellow"), 
 		"" 
+	),
+	Array(
+		"Опросы", 
+		"/s2/ask/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
