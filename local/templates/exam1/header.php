@@ -78,15 +78,14 @@
         
         <?
             if($APPLICATION->GetCurPage() != SITE_DIR){
-                $APPLICATION->IncludeComponent(
-	"bitrix:main.include", 
-	".default", 
+				$APPLICATION->IncludeComponent(
+	"bitrix:breadcrumb", 
+	"exam1_nav", 
 	array(
-		"AREA_FILE_SHOW" => "file",
-		"AREA_FILE_SUFFIX" => "inc",
-		"EDIT_TEMPLATE" => "",
-		"PATH" => SITE_DIR."/include_area/breadCrumb.php",
-		"COMPONENT_TEMPLATE" => ".default"
+		"COMPONENT_TEMPLATE" => "exam1_nav",
+		"START_FROM" => "0",
+		"PATH" => "",
+		"SITE_ID" => "s2"
 	),
 	false
 );
@@ -105,7 +104,7 @@
 				if($page != SITE_DIR):?>
 					<h1><?=$APPLICATION->ShowTitle(false)?></h1>
             <?endif;?>
-
+				
             <?if($APPLICATION->GetCurPage() == SITE_DIR):?>
                 <p>«Мебельная компания» осуществляет производство мебели на высококлассном оборудовании с применением минимальной доли ручного труда, что позволяет обеспечить высокое качество нашей продукции. Налажен производственный процесс как массового и индивидуального характера, что с одной стороны позволяет обеспечить постоянную номенклатуру изделий и индивидуальный подход – с другой.
 						</p>
